@@ -1,0 +1,7 @@
+id=selinux
+name=SELinux Mode Changer
+version=vFINAL
+versionCode=1
+author=AkiraSuper
+description=Magisk Module providing basic SELinux Managment functionality.
+support=https://t.me/AkiraProjects
