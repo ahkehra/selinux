@@ -4,7 +4,7 @@
 
 ### Features: Set SELinux Mode (Enforcing or Permissive) at startup
 
-##### Contact: https://t.me/AkiraProjects
+##### Contact: https://t.me/AkiraRelease
 
 ## Dependencies
 - Magisk v15.3+
