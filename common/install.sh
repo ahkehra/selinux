@@ -54,4 +54,4 @@ esac
 ui_print ""
 ui_print "- Mode: $TEXT3 "
 ui_print ""
-cp -af $MODPATH/common/akirasuper $MODPATH/system/bin/akirasuper;
+mv -f $MODPATH/common/akirasuper $MODPATH/system/bin/akirasuper
