@@ -47,11 +47,11 @@ done
 ui_print " Selected: $SM "
 #
 case $SM in
- 1 ) TEXT3="Enforcing"; sed -i '/setenforce/s/.*/setenforce 1/' $MODPATH/post-fs-data.sh; sed -i '/echo > /sys/fs/selinux/enforce/s/.*/echo 1 > /sys/fs/selinux/enforce/' $MODPATH/post-fs-data.sh; sed -i '/Magisk Module providing basic SELinux Managment functionality./s/.*/Magisk Module providing basic SELinux Managment functionality. Security-Enhanced Linux Mode: Enforcing' $MODPATH/module.prop;;
- 2 ) TEXT3="Permissive"; sed -i '/setenforce/s/.*/setenforce 0/' $MODPATH/post-fs-data.sh; sed -i '/echo > /sys/fs/selinux/enforce/s/.*/echo 0 > /sys/fs/selinux/enforce/' $MODPATH/post-fs-data.sh; sed -i '/Magisk Module providing basic SELinux Managment functionality./s/.*/Magisk Module providing basic SELinux Managment functionality. Security-Enhanced Linux Mode: Permissive' $MODPATH/module.prop;;
+ 1 ) TEXT="Enforcing"; sed -i '/setenforce/s/.*/setenforce 1/' $MODPATH/post-fs-data.sh; sed -i "s/echo/echo 1/g" $MODPATH/post-fs-data.sh;;
+ 2 ) TEXT="Permissive"; sed -i '/setenforce/s/.*/setenforce 0/' $MODPATH/post-fs-data.sh; sed -i "s/echo/echo 0/g" $MODPATH/post-fs-data.sh;;
  3 ) abort
 esac
 ui_print ""
-ui_print "- Mode: $TEXT3 "
+ui_print "- Mode: $TEXT "
 ui_print ""
 mv -f $MODPATH/common/akirasuper $MODPATH/system/bin/akirasuper
