@@ -3,6 +3,7 @@ akirasuper=/data/adb/modules/selinux
 bin=$akirasuper/system/bin
 postfs=$akirasuper/post-fs-data.sh
 props=$akirasuper/module.prop
+selinux=`getenforce`
 
 R='\e[01;91m' > /dev/null 2>&1;
 G='\e[01;92m' > /dev/null 2>&1;
@@ -14,7 +15,11 @@ N='\e[0m' > /dev/null 2>&1;
 
 clear;
 echo ""
-echo $C"SELinux Status : $Y `getenforce`"$N
+if [ "$selinux" == "Enforce" ]; then
+    echo $Y"SELinux Status :$G Enforcing"$N
+elif [ "$selinux" == "Permissive" ]; then
+    echo $Y"SELinux Status :$R Permissive"$N
+fi
 echo ""
 echo $P"Security-Enhanced Linux (SELinux)"
 echo "is a Linux kernel security module that provides a mechanism for supporting"
@@ -47,7 +52,7 @@ sleep 2
 sh $bin/akirasuper
 fi
 echo $C"Exiting Menu"$N;
-echo $Y"Good Bye.."$N;
+echo $C"Good Bye.."$N;
 echo ""
 sleep 0.2
 exit
