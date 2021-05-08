@@ -14,7 +14,7 @@ N='\e[0m' > /dev/null 2>&1;
 
 clear;
 echo ""
-echo $C"SELinux Status : `getenforce`"$N
+echo $C"SELinux Status : $Y `getenforce`"$N
 echo ""
 echo $P"Security-Enhanced Linux (SELinux)"
 echo "is a Linux kernel security module that provides a mechanism for supporting"
@@ -50,7 +50,7 @@ sh $bin/akirasuper
 fi
 echo ""
 echo $C"Exiting Menu"$N;
-echo $C"Good Bye.."$N;
+echo $Y"Good Bye.."$N;
 echo ""
 sleep 0.2
 exit
