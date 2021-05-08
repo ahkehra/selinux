@@ -6,16 +6,10 @@
 
 ##### Contact: https://t.me/AkiraRelease
 
-## Dependencies
-- Magisk v15.3+
-- Android v4.3+ device
-- SELinux Enabled Kernel
-
-##### Yes, works on all ROMs and on all firmwares.
-
 #### - ChangeLog -
 
-### Version Name: vFINAL
+### Version Name: 1.0
 
 - Initial Release
-- Select SELinux Mode set at Startup
+- Select SELinux Mode at startup
+- Added Terminal Command `su -c akirasuper`
