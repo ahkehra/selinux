@@ -1,15 +1,14 @@
-##### SELinux Mode Changer | Magisk Module
+### SELinux Mode Changer | Magisk Module
 
-## A Magisk Module dedicated to the manipulation and analysis of SELinux
+#### A Magisk Module dedicated to the manipulation and analysis of SELinux
 
-### Features: Set SELinux Mode (Enforcing or Permissive) at startup
+##### Features: Set SELinux Mode (Enforcing or Permissive) at startup
 
-##### Contact: https://t.me/AkiraRelease
+##### Contact: [AKIRA](https://t.me/AkiraRelease)
 
-#### - ChangeLog -
+##### - ChangeLog -
 
-### Version Name: 1.0
+##### Version Name: 1.0
 
-- Initial Release
 - Select SELinux Mode at startup
 - Added Terminal Command `su -c akirasuper`
