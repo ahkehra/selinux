@@ -3,7 +3,6 @@ akirasuper=/data/adb/modules/selinux
 bin=$akirasuper/system/bin
 postfs=$akirasuper/post-fs-data.sh
 props=$akirasuper/module.prop
-selinux=`getenforce`
 
 R='\e[01;91m' > /dev/null 2>&1;
 G='\e[01;92m' > /dev/null 2>&1;
@@ -15,11 +14,7 @@ N='\e[0m' > /dev/null 2>&1;
 
 clear;
 echo ""
-if [ "$selinux" == "1" ]; then
-    echo $Y"SELinux Status :$G Enforcing"$N
-elif [ "$selinux" == "0" ]; then
-    echo $Y"SELinux Status :$R Permissive"$N
-fi
+echo $C"SELinux Status : `getenforce`"$N
 echo ""
 echo $P"Security-Enhanced Linux (SELinux)"
 echo "is a Linux kernel security module that provides a mechanism for supporting"
@@ -34,6 +29,7 @@ if [ $option -eq 1 ]; then
       sed -i '/setenforce/s/.*/setenforce 1/' $postfs;
       sed -i "s/echo/echo 1/g" $postfs;
       sed -i "s/Magisk Module providing basic SELinux Managment functionality. Security-Enhanced Linux Mode: Permissive/Magisk Module providing basic SELinux Managment functionality. Security-Enhanced Linux Mode: Enforcing/g" $props;
+      echo -n ""
       echo -n $G".........---ENFORCING---.........."$N;
 sleep 2
 elif [ $option -eq 2 ]; then
@@ -42,6 +38,7 @@ elif [ $option -eq 2 ]; then
       sed -i '/setenforce/s/.*/setenforce 0/' $postfs;
       sed -i "s/echo/echo 0/g" $postfs;
       sed -i "s/Magisk Module providing basic SELinux Managment functionality. Security-Enhanced Linux Mode: Enforcing/Magisk Module providing basic SELinux Managment functionality. Security-Enhanced Linux Mode: Permissive/g" $props;
+      echo -n ""
       echo -n $R".........---PERMISSIVE---.........."$N;
 sleep 2
 else
@@ -52,7 +49,7 @@ sleep 2
 sh $bin/akirasuper
 fi
 echo ""
-echo $C"$Exiting Menu"$N;
+echo $C"Exiting Menu"$N;
 echo $C"Good Bye.."$N;
 echo ""
 sleep 0.2
