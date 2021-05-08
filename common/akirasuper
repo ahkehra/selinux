@@ -15,7 +15,7 @@ N='\e[0m' > /dev/null 2>&1;
 
 clear;
 echo ""
-if [ "$selinux" == "Enforce" ]; then
+if [ "$selinux" == "Enforcing" ]; then
     echo $Y"SELinux Status :$G Enforcing"$N
 elif [ "$selinux" == "Permissive" ]; then
     echo $Y"SELinux Status :$R Permissive"$N
