@@ -10,9 +10,6 @@ sleep 0.5
 ui_print "- SElinux Status : $(su -c getenforce) "
 ui_print ""
 sleep 0.5
-ui_print " (Volume + Next) × (Volume - Install) "
-ui_print ""
-sleep 0.5
 ui_print "- NOTE -"
 ui_print " SELinux operates on the principle of default denial:"
 ui_print " Anything not explicitly allowed is denied."
@@ -22,36 +19,19 @@ ui_print " - Enforcing mode, in which permissions denials are both logged and en
 ui_print ""
 sleep 0.5
 ui_print "- Security-Enhanced Linux (SELinux) -"
-ui_print ""
-sleep 0.2
-ui_print " 1. Enforcing "
-sleep 0.2
-ui_print " 2. Permissive "
-sleep 0.2
-ui_print " 3. Cancel "
-ui_print ""
-sleep 0.2
-ui_print " Select: "
-SM=1
-while true; do
-	ui_print "  $SM"
-	if $VKSEL; then
-		SM=$((SM + 1))
-	else 
-		break
-	fi
-	if [ $SM -gt 3 ]; then
-		SM=1
-	fi
-done
-ui_print " Selected: $SM "
-#
-case $SM in
- 1 ) TEXT="Enforcing"; sed -i '/setenforce/s/.*/setenforce 1/' $MODPATH/post-fs-data.sh; sed -i "s/echo/echo 1/g" $MODPATH/post-fs-data.sh; sed -i "s/Magisk Module providing basic SELinux Managment functionality./Magisk Module providing basic SELinux Managment functionality. Security-Enhanced Linux Mode: Enforcing/g" $MODPATH/module.prop;;
- 2 ) TEXT="Permissive"; sed -i '/setenforce/s/.*/setenforce 0/' $MODPATH/post-fs-data.sh; sed -i "s/echo/echo 0/g" $MODPATH/post-fs-data.sh; sed -i "s/Magisk Module providing basic SELinux Managment functionality./Magisk Module providing basic SELinux Managment functionality. Security-Enhanced Linux Mode: Permissive/g" $MODPATH/module.prop;;
- 3 ) abort
-esac
-ui_print ""
-ui_print "- Mode: $TEXT "
-ui_print ""
+if [ "$(su -c getenforce)" == "Permissive" ]; then
+    sed -i '/setenforce/s/.*/setenforce 0/' $MODPATH/post-fs-data.sh
+    sed -i "s/echo/echo 0/g" $MODPATH/post-fs-data.sh
+    sed -i "s/Magisk Module providing basic SELinux Managment functionality./Magisk Module providing basic SELinux Managment functionality. Security-Enhanced Linux Mode: Permissive/g" $MODPATH/module.prop
+    echo ""
+    echo "- SELinux Permissive Mode"
+    echo ""
+elif [ "$(su -c getenforce)" == "Enforce" ]; then
+    sed -i '/setenforce/s/.*/setenforce 1/' $MODPATH/post-fs-data.sh
+    sed -i "s/echo/echo 1/g" $MODPATH/post-fs-data.sh
+    sed -i "s/Magisk Module providing basic SELinux Managment functionality./Magisk Module providing basic SELinux Managment functionality. Security-Enhanced Linux Mode: Enforcing/g" $MODPATH/module.prop
+    echo ""
+    echo "- SELinux Enforcing Mode"
+    echo ""
+fi
 mv -f $MODPATH/common/akirasuper $MODPATH/system/bin/akirasuper
