@@ -2,6 +2,7 @@
 akirasuper=/data/adb/modules/selinux
 bin=$akirasuper/system/bin
 postfs=$akirasuper/post-fs-data.sh
+props=$akirasuper/module.prop
 
 R='\e[01;91m' > /dev/null 2>&1;
 G='\e[01;92m' > /dev/null 2>&1;
@@ -27,6 +28,7 @@ if [ $option -eq 1 ]; then
       sed -i "s/echo 0/echo/g" $postfs;
       sed -i '/setenforce/s/.*/setenforce 1/' $postfs;
       sed -i "s/echo/echo 1/g" $postfs;
+      sed -i "s/Magisk Module providing basic SELinux Managment functionality. Security-Enhanced Linux Mode: Permissive/Magisk Module providing basic SELinux Managment functionality. Security-Enhanced Linux Mode: Enforcing/g" $props;
       echo -n $G".........---ENFORCING---.........."$N
 sleep 2
 elif [ $option -eq 2 ]; then
@@ -34,6 +36,7 @@ elif [ $option -eq 2 ]; then
       sed -i "s/echo 1/echo/g" $postfs;
       sed -i '/setenforce/s/.*/setenforce 0/' $postfs;
       sed -i "s/echo/echo 0/g" $postfs;
+      sed -i "s/Magisk Module providing basic SELinux Managment functionality. Security-Enhanced Linux Mode: Enforcing/Magisk Module providing basic SELinux Managment functionality. Security-Enhanced Linux Mode: Permissive/g" $props;
       echo -n $G".........---PERMISSIVE---.........."$N
 sleep 2
 else

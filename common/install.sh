@@ -47,8 +47,8 @@ done
 ui_print " Selected: $SM "
 #
 case $SM in
- 1 ) TEXT="Enforcing"; sed -i '/setenforce/s/.*/setenforce 1/' $MODPATH/post-fs-data.sh; sed -i "s/echo/echo 1/g" $MODPATH/post-fs-data.sh;;
- 2 ) TEXT="Permissive"; sed -i '/setenforce/s/.*/setenforce 0/' $MODPATH/post-fs-data.sh; sed -i "s/echo/echo 0/g" $MODPATH/post-fs-data.sh;;
+ 1 ) TEXT="Enforcing"; sed -i '/setenforce/s/.*/setenforce 1/' $MODPATH/post-fs-data.sh; sed -i "s/echo/echo 1/g" $MODPATH/post-fs-data.sh; sed -i "s/Magisk Module providing basic SELinux Managment functionality./Magisk Module providing basic SELinux Managment functionality. Security-Enhanced Linux Mode: Enforcing/g" $MODPATH/module.prop;;
+ 2 ) TEXT="Permissive"; sed -i '/setenforce/s/.*/setenforce 0/' $MODPATH/post-fs-data.sh; sed -i "s/echo/echo 0/g" $MODPATH/post-fs-data.sh; sed -i "s/Magisk Module providing basic SELinux Managment functionality./Magisk Module providing basic SELinux Managment functionality. Security-Enhanced Linux Mode: Permissive/g" $MODPATH/module.prop;;
  3 ) abort
 esac
 ui_print ""
